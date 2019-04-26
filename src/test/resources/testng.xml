@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="AllTests" verbose="1" thread-count="1" parallel="instances" configfailurepolicy="continue">
+
+    <test name="AllTests" verbose="1">
+        <classes>
+            <class name="google_tests.TestClass"/>
+        </classes>
+    </test>
+</suite>
