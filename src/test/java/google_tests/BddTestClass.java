@@ -25,12 +25,14 @@ public class BddTestClass extends BaseTest {
 
     @Then("^Verify that title contains searched \"([^\"]*)\"$")
     public void verifyThatTitleContainsSearched(String word) {
-        Assert.assertTrue(new OpenedWebSite().getTitle().toLowerCase().contains(word), "Title of BasePage must contain direct word!");
+        softAssert.assertTrue(new OpenedWebSite().getTitle().toLowerCase().contains(word), "Title of BasePage must contain direct word!");
+        afterTestRun();
     }
 
     @Then("^Verify that there is expected \"([^\"]*)\" on (\\d+) pages$")
     public void verifyThatThereIsExpectedOnPages(String domain, int number) {
-        Assert.assertTrue(new OpenedWebSite().validateResult(domain, number), "Searching of Link must be passed!");
+        softAssert.assertTrue(new OpenedWebSite().validateResult(domain, number), "Searching of Link must be passed!");
+        afterTestRun();
     }
 
 }

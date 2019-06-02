@@ -15,16 +15,18 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.asserts.SoftAssert;
 
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
+    private final String BASE_URL = "https://www.google.com/";
+    private static Logger log = LogManager.getLogger(BaseTest.class);
+    protected static SoftAssert softAssert = new SoftAssert();
+    private static WebDriver driver;
+    private String browserName;
     protected static String searchFor;
     protected static int pageCount;
-    private static Logger log = LogManager.getLogger(BaseTest.class);
-    private static WebDriver driver;
-    private final String BASE_URL = "https://www.google.com/";
-    private String browserName;
 
     @BeforeClass(alwaysRun = true)
     public void beforeTestRun() {
@@ -53,6 +55,7 @@ public class BaseTest {
         log.info("*****Closing Browser*****");
         driver.manage().deleteAllCookies();
         driver.close();
+        softAssert.assertAll();
     }
 
     public WebDriver getDriver() {

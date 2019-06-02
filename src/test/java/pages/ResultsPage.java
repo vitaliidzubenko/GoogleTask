@@ -12,7 +12,7 @@ public class ResultsPage extends BasePage {
 
     public ResultsPage() {
         navigateForwardButton = new Element(By.xpath("//a[@id = 'pnnext']"), "ResultsPage -> navigateForwardButton");
-        resultLinks = new Element(By.xpath("//div[@class = 'r']"), "ResultsPage -> resultLinks");
+        resultLinks = new Element(By.xpath("//div[@class = 'TbwUpd']"), "ResultsPage -> resultLinks");
     }
 
     public ResultsPage openFirstResultUrl() {
@@ -35,16 +35,16 @@ public class ResultsPage extends BasePage {
 
     public boolean getResultsOnPage(String searchingDomain) {
         log.info("Getting text of all Links on ResultsPage");
-        String result, resultLink;
-        List<WebElement> links = resultLinks.getAll();
-        for (WebElement link : links) {
+        String textOfLink;
+        List<WebElement> allLinksAtPage = resultLinks.getAll();
+        for (WebElement link : allLinksAtPage) {
             if (!link.isDisplayed()) {
                 scrollDownOnPage();
             }
-            result = link.getText();
-            resultLink = result.substring(result.indexOf("\n") + 1, result.lastIndexOf("/"));
-            log.info("TEXT OF LINK  is: [" + resultLink + "]");
-            if (resultLink.contains(searchingDomain)) {
+            textOfLink = link.getText();
+            log.info("TEXT OF LINK  is: [" + textOfLink + "]");
+            if (textOfLink.contains(searchingDomain)) {
+                log.info("Successfully found! LINK: [" + textOfLink + "]");
                 return true;
             }
         }

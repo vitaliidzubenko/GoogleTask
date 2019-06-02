@@ -25,7 +25,6 @@ public class Element extends BaseTest {
     public boolean isExist() {
         log.info("[Checking if Element exists: " + description + "]");
         for (int i = 0; i < 10; i++) {
-            implicitWait(1);
             if (get().isEnabled() || get().isDisplayed()) {
                 return true;
             } else {

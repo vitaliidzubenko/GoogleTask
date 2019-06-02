@@ -32,9 +32,9 @@ public class OpenedWebSite extends BasePage {
 
     private boolean validateResultWrapper(String searchingDomain, int pageCount) {
         for (int i = 0; i < pageCount; i++) {
-            log.info("Results at BasePage #" + (i + 1));
+            log.info("Results of Page #" + (i + 1));
             if (resPage.getResultsOnPage(searchingDomain)) {
-                log.info("Domain found at BasePage#" + (i + 1));
+                log.info("Domain found at Page #" + (i + 1));
                 return true;
             } else {
                 resPage.navigateForward();

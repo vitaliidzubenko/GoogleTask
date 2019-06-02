@@ -1,7 +1,6 @@
 package google_tests;
 
 import io.qameta.allure.Description;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.MainBasePage;
@@ -27,13 +26,13 @@ public class TestRunner extends BaseTest {
     public void firstTest() {
         mainPage.searchText().submitSearch();
         resPage.openFirstResultUrl();
-        Assert.assertTrue(openedWebSite.getTitle().toLowerCase().contains(searchFor), "Title of BasePage must contain direct word!");
+        softAssert.assertTrue(openedWebSite.getTitle().toLowerCase().contains(searchFor), "Title of BasePage must contain direct word!");
     }
 
     @Test(priority = 2, dataProvider = "searchDomain", dataProviderClass = TestParameters.class)
     @Description("Searching direct domain at result pages")
     public void secondTest(String domain) {
         mainPage.searchText().submitSearch();
-        Assert.assertTrue(openedWebSite.validateResult(domain), "Searching of Link must be passed!");
+        softAssert.assertTrue(openedWebSite.validateResult(domain), "Searching of Link must be passed!");
     }
 }
