@@ -1,11 +1,5 @@
-# REQUIRED FOR SERVICE-TEMPLATE:
-
 # Githash endpoint
 git.properties
-
-
-# Operating System Files
-
 
 *.DS_Store
 Thumbs.db
@@ -23,8 +17,6 @@ kdiff3
 .LOCAL.
 .REMOTE.
 
-
-
 # Build Artifacts
 .gradle/
 build/
@@ -32,16 +24,13 @@ target/
 dependency-reduced-pom.xml
 nbactions.xml
 
-
 # Visual Studio Code
 .vscode/
-
 
 # Eclipse Project Files
 .classpath
 .project
 .settings/
-
 
 # IntelliJ IDEA Files
 *.iml
@@ -49,23 +38,14 @@ nbactions.xml
 *.iws
 *.idea
 
-
 # Log files
 *.log
-
-README.html
-
-
-# Python
-*.pyc
-
 
 # Terraform template
 .tfstate
 .terraform/
 .terraformer/
 .terragrunt
-
 
 # Go
 build/
@@ -78,4 +58,3 @@ builds/
 cache/
 
 .m2
---------

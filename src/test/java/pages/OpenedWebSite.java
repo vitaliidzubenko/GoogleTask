@@ -1,25 +1,46 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import tools.Element;
-import tools.Page;
 
-public class OpenedWebSite extends Page {
+public class OpenedWebSite extends BasePage {
     private Element titleOfPage;
+    private ResultsPage resPage;
 
-    public OpenedWebSite(WebDriver driver) {
-        super(driver);
-        titleOfPage = new Element(driver, By.xpath("//h1[@class = 'heading']"), "dfgdfg");
+    public OpenedWebSite() {
+        titleOfPage = new Element(By.xpath("//title"), "OpenedWebSite -> Title of page");
+        resPage = new ResultsPage();
     }
 
     public String getTitle() {
-        log.info("Getting title of Opened Page");
+        log.info("Getting title of Opened BasePage");
         if (titleOfPage.isExist()) {
-            log.info("TEXT of TITLE is: [" + titleOfPage.getText() + "]");
-            return titleOfPage.getText();
+            log.info("TEXT of TITLE is: [" + titleOfPage.getTextByAttribute() + "]");
+            return titleOfPage.getTextByAttribute();
         } else {
             return "";
         }
     }
+
+    public boolean validateResult(String searchingDomain) {
+        return validateResultWrapper(searchingDomain, pageCount);
+    }
+
+    public boolean validateResult(String searchingDomain, int pageCount) {
+        return validateResultWrapper(searchingDomain, pageCount);
+    }
+
+    private boolean validateResultWrapper(String searchingDomain, int pageCount) {
+        for (int i = 0; i < pageCount; i++) {
+            log.info("Results at BasePage #" + (i + 1));
+            if (resPage.getResultsOnPage(searchingDomain)) {
+                log.info("Domain found at BasePage#" + (i + 1));
+                return true;
+            } else {
+                resPage.navigateForward();
+            }
+        }
+        return false;
+    }
+
 }

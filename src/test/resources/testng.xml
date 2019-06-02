@@ -1,9 +1,11 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="AllTests" verbose="1" thread-count="1" parallel="instances" configfailurepolicy="continue">
-
-    <test name="AllTests" verbose="1">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Google" verbose="1">
+    <test name="Test">
+        <parameter name="baseUrl" value="https://www.google.com/"/>
+        <parameter name="searchFor" value="automation"/>
         <classes>
-            <class name="google_tests.TestClass"/>
+            <class name="google_tests.TestRunner"/>
         </classes>
     </test>
 </suite>

@@ -1,4 +1,4 @@
-package common;
+package tools;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Attachment;
@@ -11,34 +11,33 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
-    private static final String BASE_URL = "https://www.google.com/";
-    public static Logger log = LogManager.getLogger(BaseTest.class);
-    public static String searchingDomain = "https://www.testautomationday.com";
-    public static String searchFor;
-    public static String browserName;
-    public static int pageCount;
-    private WebDriver driver;
+    protected static String searchFor;
+    protected static int pageCount;
+    private static Logger log = LogManager.getLogger(BaseTest.class);
+    private static WebDriver driver;
+    private final String BASE_URL = "https://www.google.com/";
+    private String browserName;
 
     @BeforeClass(alwaysRun = true)
     public void beforeTestRun() {
-        searchFor = System.getProperty("search.for");
-        browserName = System.getProperty("browser.name");
-        pageCount = Integer.parseInt(System.getProperty("page.count"));
-        browserSetup();
-    }
-
-    @BeforeMethod(alwaysRun = true)
-    public void start() {
-        log.info("########################################################");
-        log.info("#####Starting Test");
+        log.info("*****Starting Test*****");
+        driverSetup();
+        gettingAllParameters();
         driver.manage().deleteAllCookies();
         driver.manage().window().setSize(new Dimension(1024, 768));
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+    }
+
+    @BeforeMethod(alwaysRun = true)
+    public void navigateToBaseUrl() {
         driver.navigate().to(BASE_URL);
     }
 
@@ -47,22 +46,29 @@ public class BaseTest {
         if (!result.isSuccess()) {
             saveScreenshot(getDriver());
         }
-        log.info("########################################################");
-        log.info("#####Closing Browser");
+    }
+
+    @AfterClass(alwaysRun = true)
+    public void afterTestRun() {
+        log.info("*****Closing Browser*****");
         driver.manage().deleteAllCookies();
-        driver.quit();
+        driver.close();
     }
 
-    protected WebDriver getDriver() {
-        return this.driver;
+    public WebDriver getDriver() {
+        return driver;
     }
 
-    private void browserSetup() {
+    public void implicitWait(int timeOut) {
+        driver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
+    }
+
+    private void driverSetup() {
         if (browserName == null)
             browserName = "chrome";
         switch (browserName) {
             case "chrome":
-                WebDriverManager.chromedriver().version("73.0.3683.68").setup();
+                WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
                 break;
             case "firefox":
@@ -72,7 +78,13 @@ public class BaseTest {
         }
     }
 
-    @Attachment(value = "Page screenshot", type = "image/png")
+    private void gettingAllParameters() {
+        searchFor = System.getProperty("search.for");
+        browserName = System.getProperty("browser.name");
+        pageCount = Integer.parseInt(System.getProperty("page.count"));
+    }
+
+    @Attachment(value = "BasePage screenshot", type = "image/png")
     private byte[] saveScreenshot(WebDriver driver) {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
