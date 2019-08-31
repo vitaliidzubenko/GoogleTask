@@ -3,9 +3,8 @@ package google_tests;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.testng.Assert;
-import pages.MainBasePage;
-import pages.OpenedWebSite;
+import pages.MainPage;
+import pages.FirstWebPage;
 import pages.ResultsPage;
 import tools.BaseTest;
 
@@ -15,7 +14,7 @@ public class BddTestClass extends BaseTest {
     public void openGoogleAndSearchFor(String word) {
         beforeTestRun();
         navigateToBaseUrl();
-        new MainBasePage().searchText(word).submitSearch();
+        new MainPage().searchText(word).submitSearch();
     }
 
     @When("^Open the first link on search results page$")
@@ -25,13 +24,13 @@ public class BddTestClass extends BaseTest {
 
     @Then("^Verify that title contains searched \"([^\"]*)\"$")
     public void verifyThatTitleContainsSearched(String word) {
-        softAssert.assertTrue(new OpenedWebSite().getTitle().toLowerCase().contains(word), "Title of BasePage must contain direct word!");
+        softAssert.assertTrue(new FirstWebPage().getTitle().toLowerCase().contains(word), "Title of BasePage must contain direct word!");
         afterTestRun();
     }
 
-    @Then("^Verify that there is expected \"([^\"]*)\" on (\\d+) pages$")
+    @Then("^Verify that there is expected \"([^\"]*)\" on \"([^\"]*)\" pages$")
     public void verifyThatThereIsExpectedOnPages(String domain, int number) {
-        softAssert.assertTrue(new OpenedWebSite().validateResult(domain, number), "Searching of Link must be passed!");
+        softAssert.assertTrue(new FirstWebPage().validateResult(domain, number), "Searching of Link must be passed!");
         afterTestRun();
     }
 

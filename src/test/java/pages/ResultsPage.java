@@ -5,8 +5,9 @@ import org.openqa.selenium.WebElement;
 import tools.Element;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class ResultsPage extends BasePage {
+public class ResultsPage extends Page {
     private Element navigateForwardButton;
     private Element resultLinks;
 
@@ -35,19 +36,8 @@ public class ResultsPage extends BasePage {
 
     public boolean getResultsOnPage(String searchingDomain) {
         log.info("Getting text of all Links on ResultsPage");
-        String textOfLink;
-        List<WebElement> allLinksAtPage = resultLinks.getAll();
-        for (WebElement link : allLinksAtPage) {
-            if (!link.isDisplayed()) {
-                scrollDownOnPage();
-            }
-            textOfLink = link.getText();
-            log.info("TEXT OF LINK  is: [" + textOfLink + "]");
-            if (textOfLink.contains(searchingDomain)) {
-                log.info("Successfully found! LINK: [" + textOfLink + "]");
-                return true;
-            }
-        }
-        return false;
+        List<String> allLinksText = resultLinks.getAll().stream().map(WebElement::getText).collect(Collectors.toList());
+        allLinksText.forEach(link -> log.info(String.format("URL: %s", link)));
+        return allLinksText.stream().anyMatch(s -> s.contains(searchingDomain));
     }
 }

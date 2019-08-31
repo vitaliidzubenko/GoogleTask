@@ -3,36 +3,33 @@ package google_tests;
 import io.qameta.allure.Description;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.MainBasePage;
-import pages.OpenedWebSite;
+import pages.MainPage;
+import pages.FirstWebPage;
 import pages.ResultsPage;
 import tools.BaseTest;
-import tools.TestParameters;
 
 public class TestRunner extends BaseTest {
-    private MainBasePage mainPage;
-    private ResultsPage resPage;
-    private OpenedWebSite openedWebSite;
+    private MainPage mainPage;
+    private FirstWebPage firstWebPage;
 
-    @BeforeClass
-    public void beforeRun() {
-        mainPage = new MainBasePage();
-        resPage = new ResultsPage();
-        openedWebSite = new OpenedWebSite();
+    @BeforeClass(alwaysRun = true)
+    public void initPages() {
+        mainPage = new MainPage();
+        firstWebPage = new FirstWebPage();
     }
 
     @Test(priority = 1)
     @Description("Checking text of title at first opened link at results page")
-    public void firstTest() {
-        mainPage.searchText().submitSearch();
-        resPage.openFirstResultUrl();
-        softAssert.assertTrue(openedWebSite.getTitle().toLowerCase().contains(searchFor), "Title of BasePage must contain direct word!");
+    public void checkFirstLinkText() {
+        mainPage.searchText(searchForWord).submitSearch();
+        new ResultsPage().openFirstResultUrl();
+        softAssert.assertTrue(firstWebPage.getTitle().toLowerCase().contains(searchForWord), String.format("Title of First Opened WebPage must contain [%s]", searchForWord));
     }
 
-    @Test(priority = 2, dataProvider = "searchDomain", dataProviderClass = TestParameters.class)
-    @Description("Searching direct domain at result pages")
-    public void secondTest(String domain) {
-        mainPage.searchText().submitSearch();
-        softAssert.assertTrue(openedWebSite.validateResult(domain), "Searching of Link must be passed!");
+    @Test(priority = 2)
+    @Description("Searching for specific domain at result pages")
+    public void searchForDomain() {
+        mainPage.searchText(searchForWord).submitSearch();
+        softAssert.assertTrue(firstWebPage.validateResult(searchForDomain), String.format("Failed to find domain [%s] at [%s] result pages", searchForDomain, pageCount));
     }
 }

@@ -2,8 +2,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Google" verbose="1">
     <test name="Test">
-        <parameter name="baseUrl" value="https://www.google.com/"/>
-        <parameter name="searchFor" value="automation"/>
         <classes>
             <class name="google_tests.TestRunner"/>
         </classes>

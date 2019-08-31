@@ -3,23 +3,22 @@ package pages;
 import org.openqa.selenium.By;
 import tools.Element;
 
-public class OpenedWebSite extends BasePage {
+public class FirstWebPage extends Page {
     private Element titleOfPage;
     private ResultsPage resPage;
 
-    public OpenedWebSite() {
+    public FirstWebPage() {
         titleOfPage = new Element(By.xpath("//title"), "OpenedWebSite -> Title of page");
         resPage = new ResultsPage();
     }
 
     public String getTitle() {
-        log.info("Getting title of Opened BasePage");
+        log.info("Getting title of Opened WebPage");
         if (titleOfPage.isExist()) {
-            log.info("TEXT of TITLE is: [" + titleOfPage.getTextByAttribute() + "]");
+            log.info(String.format("TEXT of TITLE is: [%s]", titleOfPage.getTextByAttribute()));
             return titleOfPage.getTextByAttribute();
-        } else {
+        } else
             return "";
-        }
     }
 
     public boolean validateResult(String searchingDomain) {
@@ -32,13 +31,12 @@ public class OpenedWebSite extends BasePage {
 
     private boolean validateResultWrapper(String searchingDomain, int pageCount) {
         for (int i = 0; i < pageCount; i++) {
-            log.info("Results of Page #" + (i + 1));
+            log.info(String.format("Results of Page #%s", (i + 1)));
             if (resPage.getResultsOnPage(searchingDomain)) {
-                log.info("Domain found at Page #" + (i + 1));
+                log.info(String.format("Domain [%s] is found at Page #%s", searchingDomain, (i + 1)));
                 return true;
-            } else {
+            } else
                 resPage.navigateForward();
-            }
         }
         return false;
     }

@@ -3,32 +3,27 @@ package pages;
 import org.openqa.selenium.By;
 import tools.Element;
 
-public class MainBasePage extends BasePage {
+public class MainPage extends Page {
     private Element textInputField;
     private Element submitButton;
 
-    public MainBasePage() {
+    public MainPage() {
         textInputField = new Element(By.xpath("//div[@class = 'A8SBwf']//input[@class = 'gLFyf gsfi']"), "MainBasePage -> textInputField");
         submitButton = new Element(By.xpath("//input[@name = 'btnK']"), "MainBasePage -> submitButton");
     }
 
-    public MainBasePage searchText() {
-        log.info("Searching input field for text");
-        textInputField.setText(searchFor);
-        return this;
-    }
-
-    public MainBasePage submitSearch() {
+    public MainPage submitSearch() {
+        log.info("Submitting search");
         if (submitButton.isExist()) {
-            log.info("Submitting search");
             submitButton.click();
         }
         return this;
     }
 
-    public MainBasePage searchText(String word) {
+    public MainPage searchText(String word) {
         log.info("Searching input field for text");
-        textInputField.setText(word);
+        if (textInputField.isExist())
+            textInputField.setText(word);
         return this;
     }
 }

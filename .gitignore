@@ -1,6 +1,5 @@
 # Githash endpoint
 git.properties
-
 *.DS_Store
 Thumbs.db
 *.sw?
@@ -9,7 +8,7 @@ Thumbs.db
 *~
 .sublime-
 
-#git, 
+#git
 kdiff3
 *.orig
 .BASE.
@@ -24,14 +23,6 @@ target/
 dependency-reduced-pom.xml
 nbactions.xml
 
-# Visual Studio Code
-.vscode/
-
-# Eclipse Project Files
-.classpath
-.project
-.settings/
-
 # IntelliJ IDEA Files
 *.iml
 *.ipr
@@ -40,19 +31,6 @@ nbactions.xml
 
 # Log files
 *.log
-
-# Terraform template
-.tfstate
-.terraform/
-.terraformer/
-.terragrunt
-
-# Go
-build/
-*.cov
-
-# Helm
-*.tgz
 
 builds/
 cache/
