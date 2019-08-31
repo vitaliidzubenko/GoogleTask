@@ -14,9 +14,8 @@ public class MainPage extends Page {
 
     public MainPage submitSearch() {
         log.info("Submitting search");
-        if (submitButton.isExist()) {
+        if (submitButton.isExist())
             submitButton.click();
-        }
         return this;
     }
 

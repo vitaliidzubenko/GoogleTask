@@ -21,10 +21,6 @@ public class FirstWebPage extends Page {
             return "";
     }
 
-    public boolean validateResult(String searchingDomain) {
-        return validateResultWrapper(searchingDomain, pageCount);
-    }
-
     public boolean validateResult(String searchingDomain, int pageCount) {
         return validateResultWrapper(searchingDomain, pageCount);
     }

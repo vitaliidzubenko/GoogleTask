@@ -3,8 +3,8 @@ package google_tests;
 import io.qameta.allure.Description;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.MainPage;
 import pages.FirstWebPage;
+import pages.MainPage;
 import pages.ResultsPage;
 import tools.BaseTest;
 
@@ -30,6 +30,6 @@ public class TestRunner extends BaseTest {
     @Description("Searching for specific domain at result pages")
     public void searchForDomain() {
         mainPage.searchText(searchForWord).submitSearch();
-        softAssert.assertTrue(firstWebPage.validateResult(searchForDomain), String.format("Failed to find domain [%s] at [%s] result pages", searchForDomain, pageCount));
+        softAssert.assertTrue(firstWebPage.validateResult(searchForDomain, pageCount), String.format("Failed to find domain [%s] at [%s] result pages", searchForDomain, pageCount));
     }
 }

@@ -3,8 +3,8 @@ package google_tests;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import pages.MainPage;
 import pages.FirstWebPage;
+import pages.MainPage;
 import pages.ResultsPage;
 import tools.BaseTest;
 

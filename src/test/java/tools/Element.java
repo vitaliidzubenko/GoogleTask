@@ -18,48 +18,38 @@ public class Element extends BaseTest {
     }
 
     public void click() {
-        log.info("[Clicking at Element: " + description + "]");
+        log.info(String.format("[Clicking at Element: %s]", description));
         get().click();
     }
 
     public boolean isExist() {
-        log.info("[Checking if Element exists: " + description + "]");
+        log.info(String.format("[Checking if Element exists: %s]", description));
         for (int i = 0; i < 10; i++) {
             if (get().isEnabled() || get().isDisplayed()) {
                 return true;
-            } else {
+            } else
                 implicitWait(1);
-            }
         }
         return false;
     }
 
     public String getTextByAttribute() {
-        log.info("[Getting text by attribute from Element : " + description + "]");
-        String result = "";
-        for (int i = 0; i < 3; i++) {
-            try {
-                result = get().getAttribute("text");
-            } catch (Exception ex) {
-                implicitWait(1);
-            }
-        }
-        return result;
+        log.info(String.format("[Getting text by attribute from Element : %s]", description));
+        return get().getAttribute("text");
     }
 
     public void setText(String str) {
-        log.info("[Setting text for Element : " + description + "]");
+        log.info(String.format("[Setting text for Element : %s]", description));
         get().sendKeys(str);
     }
 
     private WebElement get() {
-        log.info("[Getting selector from Element : " + description + "]");
+        log.info(String.format("[Getting selector from Element : %s]", description));
         return getDriver().findElement(selector);
     }
 
     public List<WebElement> getAll() {
-        log.info("[Getting all Elements : " + description + "]");
+        log.info(String.format("[Getting all Elements : %s]", description));
         return getDriver().findElements(selector);
     }
-
 }

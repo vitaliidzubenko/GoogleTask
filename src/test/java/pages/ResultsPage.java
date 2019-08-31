@@ -18,9 +18,8 @@ public class ResultsPage extends Page {
 
     public ResultsPage openFirstResultUrl() {
         log.info("Clicking at first link in ResultsPage");
-        if (resultLinks.isExist()) {
+        if (resultLinks.isExist())
             resultLinks.click();
-        }
         return this;
     }
 
@@ -28,9 +27,8 @@ public class ResultsPage extends Page {
         log.info("Navigating to next Page using bottom menu");
         if (navigateForwardButton.isExist()) {
             navigateForwardButton.click();
-        } else {
+        } else
             scrollToEndOfPage();
-        }
         return this;
     }
 
