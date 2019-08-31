@@ -1,4 +1,4 @@
-package com.qa.google.tests;
+package com.qa.google.uiTests;
 
 import io.qameta.allure.Description;
 import org.testng.annotations.BeforeClass;
