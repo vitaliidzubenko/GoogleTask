@@ -9,7 +9,7 @@ public class MainPage extends Page {
     private BaseElement submitButton;
 
     public MainPage() {
-        textInputField = new BaseElement(By.xpath("//div[@class = 'A8SBwf']//input[@class = 'gLFyf gsfi']"), "MainBasePage -> textInputField");
+        textInputField = new BaseElement(By.xpath("//input[@name = 'q']"), "MainBasePage -> textInputField");
         submitButton = new BaseElement(By.xpath("//input[@name = 'btnK']"), "MainBasePage -> submitButton");
     }
 

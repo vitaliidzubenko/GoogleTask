@@ -18,7 +18,7 @@ public class TestRunner extends BaseTest {
         firstWebPage = new FirstWebPage();
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, groups = "Google")
     @Description("Checking text of title at first opened link at results page")
     public void checkFirstLinkText() {
         mainPage.searchText(searchForWord).submitSearch();
@@ -26,7 +26,7 @@ public class TestRunner extends BaseTest {
         softAssert.assertTrue(firstWebPage.getTitle().toLowerCase().contains(searchForWord), String.format("Title of First Opened WebPage must contain [%s]", searchForWord));
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, groups = "Google")
     @Description("Searching for specific domain at result com.qa.google.pages")
     public void searchForDomain() {
         mainPage.searchText(searchForWord).submitSearch();
