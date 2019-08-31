@@ -1,15 +1,15 @@
-package pages;
+package com.qa.google.pages;
 
 import org.openqa.selenium.By;
-import tools.Element;
+import com.qa.google.base.BaseElement;
 
 public class MainPage extends Page {
-    private Element textInputField;
-    private Element submitButton;
+    private BaseElement textInputField;
+    private BaseElement submitButton;
 
     public MainPage() {
-        textInputField = new Element(By.xpath("//div[@class = 'A8SBwf']//input[@class = 'gLFyf gsfi']"), "MainBasePage -> textInputField");
-        submitButton = new Element(By.xpath("//input[@name = 'btnK']"), "MainBasePage -> submitButton");
+        textInputField = new BaseElement(By.xpath("//div[@class = 'A8SBwf']//input[@class = 'gLFyf gsfi']"), "MainBasePage -> textInputField");
+        submitButton = new BaseElement(By.xpath("//input[@name = 'btnK']"), "MainBasePage -> submitButton");
     }
 
     public MainPage submitSearch() {

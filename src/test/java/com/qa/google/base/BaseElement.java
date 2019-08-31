@@ -1,4 +1,4 @@
-package tools;
+package com.qa.google.base;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,12 +7,12 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class Element extends BaseTest {
-    private final Logger log = LogManager.getLogger(Element.class);
+public class BaseElement extends BaseTest {
+    private final Logger log = LogManager.getLogger(BaseElement.class);
     private String description;
     private By selector;
 
-    public Element(By selector, String description) {
+    public BaseElement(By selector, String description) {
         this.selector = selector;
         this.description = description;
     }

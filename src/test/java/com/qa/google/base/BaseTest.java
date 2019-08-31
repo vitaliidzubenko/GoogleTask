@@ -1,4 +1,4 @@
-package tools;
+package com.qa.google.base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Attachment;

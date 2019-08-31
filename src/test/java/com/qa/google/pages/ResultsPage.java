@@ -1,19 +1,19 @@
-package pages;
+package com.qa.google.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import tools.Element;
+import com.qa.google.base.BaseElement;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultsPage extends Page {
-    private Element navigateForwardButton;
-    private Element resultLinks;
+    private BaseElement navigateForwardButton;
+    private BaseElement resultLinks;
 
     public ResultsPage() {
-        navigateForwardButton = new Element(By.xpath("//a[@id = 'pnnext']"), "ResultsPage -> navigateForwardButton");
-        resultLinks = new Element(By.xpath("//div[@class = 'TbwUpd']"), "ResultsPage -> resultLinks");
+        navigateForwardButton = new BaseElement(By.xpath("//a[@id = 'pnnext']"), "ResultsPage -> navigateForwardButton");
+        resultLinks = new BaseElement(By.xpath("//div[@class = 'TbwUpd']"), "ResultsPage -> resultLinks");
     }
 
     public ResultsPage openFirstResultUrl() {

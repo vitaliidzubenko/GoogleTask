@@ -1,9 +1,9 @@
-package pages;
+package com.qa.google.pages;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
-import tools.BaseTest;
+import com.qa.google.base.BaseTest;
 
 public class Page extends BaseTest {
     public static Logger log = LogManager.getLogger(Page.class);

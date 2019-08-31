@@ -1,14 +1,14 @@
-package pages;
+package com.qa.google.pages;
 
 import org.openqa.selenium.By;
-import tools.Element;
+import com.qa.google.base.BaseElement;
 
 public class FirstWebPage extends Page {
-    private Element titleOfPage;
+    private BaseElement titleOfPage;
     private ResultsPage resPage;
 
     public FirstWebPage() {
-        titleOfPage = new Element(By.xpath("//title"), "OpenedWebSite -> Title of page");
+        titleOfPage = new BaseElement(By.xpath("//title"), "OpenedWebSite -> Title of page");
         resPage = new ResultsPage();
     }
 

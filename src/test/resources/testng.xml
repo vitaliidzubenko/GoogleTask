@@ -3,7 +3,7 @@
 <suite name="Google" verbose="1">
     <test name="Test">
         <classes>
-            <class name="google_tests.TestRunner"/>
+            <class name="com.qa.google.tests.TestRunner"/>
         </classes>
     </test>
 </suite>
