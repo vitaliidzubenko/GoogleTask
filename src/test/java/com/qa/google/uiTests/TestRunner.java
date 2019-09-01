@@ -13,7 +13,7 @@ public class TestRunner extends BaseTest {
     private FirstWebPage firstWebPage;
 
     @BeforeClass(alwaysRun = true)
-    public void initPages() {
+    public void pageInit() {
         mainPage = new MainPage();
         firstWebPage = new FirstWebPage();
     }

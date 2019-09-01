@@ -1,8 +1,8 @@
 package com.qa.google.pages;
 
+import com.qa.google.base.BaseElement;
 import com.qa.google.base.Page;
 import org.openqa.selenium.By;
-import com.qa.google.base.BaseElement;
 
 public class FirstWebPage extends Page {
     private BaseElement titleOfPage;
@@ -23,10 +23,6 @@ public class FirstWebPage extends Page {
     }
 
     public boolean validateResult(String searchingDomain, int pageCount) {
-        return validateResultWrapper(searchingDomain, pageCount);
-    }
-
-    private boolean validateResultWrapper(String searchingDomain, int pageCount) {
         for (int i = 0; i < pageCount; i++) {
             log.info(String.format("Results of Page #%s", (i + 1)));
             if (resPage.getResultsOnPage(searchingDomain)) {
@@ -37,5 +33,4 @@ public class FirstWebPage extends Page {
         }
         return false;
     }
-
 }

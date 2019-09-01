@@ -24,7 +24,7 @@ public class BaseElement extends BaseTest {
 
     public boolean isExist() {
         log.info(String.format("[Checking if Element exists: %s]", description));
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             if (get().isEnabled() || get().isDisplayed()) {
                 return true;
             } else

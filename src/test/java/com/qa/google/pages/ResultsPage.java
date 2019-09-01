@@ -11,19 +11,15 @@ import java.util.stream.Collectors;
 public class ResultsPage extends Page {
     private BaseElement navigateForwardButton;
     private BaseElement resultLinks;
-    private BaseElement advertisingLink;
 
     public ResultsPage() {
         navigateForwardButton = new BaseElement(By.xpath("//a[@id = 'pnnext']"), "ResultsPage -> navigateForwardButton");
-        advertisingLink = new BaseElement(By.xpath("//div[@class = 'ad_cclk']"), "ResultsPage -> advertisingLink");
-        resultLinks = new BaseElement(By.xpath("//div[@class = 'TbwUpd']"), "ResultsPage -> resultLinks");
+        resultLinks = new BaseElement(By.xpath("//div[@id = 'center_col']//cite"), "ResultsPage -> resultLinks");
     }
 
     public ResultsPage openFirstResultUrl() {
         log.info("Clicking at first link in ResultsPage");
-        if (advertisingLink.isExist())
-            advertisingLink.click();
-        else
+        if (resultLinks.isExist())
             resultLinks.click();
         return this;
     }
