@@ -16,7 +16,7 @@ TestRunner.class or BddRunner.class
 ```
 From terminal
 ```bash
-mvn clean test
+mvn clean test verify
 ```
 From properties file
 ```bash

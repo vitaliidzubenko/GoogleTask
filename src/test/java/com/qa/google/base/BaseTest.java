@@ -53,8 +53,6 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void finish(ITestResult result) {
-        log.info("*****Closing Browser*****");
-        driver.close();
         if (!result.isSuccess())
             saveScreenshot(getDriver());
     }
