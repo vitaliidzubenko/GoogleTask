@@ -20,7 +20,7 @@ public class TestRunner extends BaseTest {
     }
 
     @Test(priority = 1, groups = "Google")
-    @Description("Checking text of title at first opened link at results page")
+    @Description("Checking text of title at first opened link at result pages")
     public void checkFirstLinkText() {
         mainPage.searchText(searchForWord).submitSearch();
         new ResultsPage().openFirstResultUrl();
@@ -28,9 +28,9 @@ public class TestRunner extends BaseTest {
     }
 
     @Test(priority = 2, groups = "Google")
-    @Description("Searching for specific domain at result com.qa.google.pages")
+    @Description("Searching for specific domain at result pages")
     public void searchForDomain() {
         mainPage.searchText(searchForWord).submitSearch();
-        Assert.assertTrue(firstWebPage.validateResult(searchForDomain, pageCount), String.format("Failed to find domain [%s] at [%s] result com.qa.google.pages", searchForDomain, pageCount));
+        Assert.assertTrue(firstWebPage.validateResult(searchForDomain, pageCount), String.format("Failed to find domain [%s] at [%s] result pages", searchForDomain, pageCount));
     }
 }

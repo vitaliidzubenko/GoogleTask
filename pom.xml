@@ -13,7 +13,7 @@
         <base.url>https://www.google.com</base.url>
         <search.word>automation</search.word>
         <page.count>5</page.count>
-        <search.domain>https://www.testautomationday.com</search.domain>
+        <search.domain>testautomationday.com</search.domain>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <aspectj.version>1.8.10</aspectj.version>
     </properties>

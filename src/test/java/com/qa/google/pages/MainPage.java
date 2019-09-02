@@ -1,8 +1,8 @@
 package com.qa.google.pages;
 
+import com.qa.google.base.BaseElement;
 import com.qa.google.base.Page;
 import org.openqa.selenium.By;
-import com.qa.google.base.BaseElement;
 
 public class MainPage extends Page {
     private BaseElement textInputField;
