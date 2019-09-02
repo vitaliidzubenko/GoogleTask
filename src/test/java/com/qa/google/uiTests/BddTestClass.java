@@ -6,8 +6,7 @@ import com.qa.google.pages.ResultsPage;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-
-import static com.qa.google.base.BaseTest.softAssert;
+import org.testng.Assert;
 
 public class BddTestClass {
 
@@ -23,11 +22,11 @@ public class BddTestClass {
 
     @Then("^Verify that title contains searched \"([^\"]*)\"$")
     public void verifyThatTitleContainsSearched(String word) {
-        softAssert.assertTrue(new FirstWebPage().getTitle().toLowerCase().contains(word), "Title of BasePage must contain direct word!");
+        Assert.assertTrue(new FirstWebPage().getTitle().toLowerCase().contains(word), "Title of BasePage must contain direct word!");
     }
 
     @Then("^Verify that there is expected \"([^\"]*)\" on \"([^\"]*)\" pages$")
     public void verifyThatThereIsExpectedOnPages(String domain, int number) {
-        softAssert.assertTrue(new FirstWebPage().validateResult(domain, number), "Searching of Link must be passed!");
+        Assert.assertTrue(new FirstWebPage().validateResult(domain, number), "Searching of Link must be passed!");
     }
 }

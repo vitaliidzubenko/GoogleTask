@@ -30,7 +30,7 @@ mvn allure:serve
 ```
 Report for BDD style will be generated automatically after test run.
 
-Reports can be found here (Cucumber and Allure)
+Reports can be found here (CucumberReport for BDD and AllureReport for TestNG)
 ```bash
 target/cucumber-reports/cucumber-pretty
 target/cucumber-reports/advanced-reports

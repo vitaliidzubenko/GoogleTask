@@ -15,7 +15,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.asserts.SoftAssert;
 
 import java.util.concurrent.TimeUnit;
 
@@ -23,7 +22,6 @@ public class BaseTest {
     public static String searchForDomain;
     public static String searchForWord;
     public static int pageCount;
-    public static SoftAssert softAssert = new SoftAssert();
     private static Logger log = LogManager.getLogger(BaseTest.class);
     private static WebDriver driver;
     private static String browserName;
@@ -60,7 +58,6 @@ public class BaseTest {
     @AfterClass(alwaysRun = true)
     public void afterTestRun() {
         driver.quit();
-        softAssert.assertAll();
     }
 
     public WebDriver getDriver() {
