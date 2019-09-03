@@ -1,35 +1,29 @@
 package com.qa.google.pages;
 
-import com.qa.google.base.BaseElement;
-import com.qa.google.base.Page;
-import org.openqa.selenium.By;
+import com.qa.google.base.DriverInit;
+import io.qameta.allure.Step;
+import static com.qa.google.base.Reporter.log;
 
-public class FirstWebPage extends Page {
-    private BaseElement titleOfPage;
-    private ResultsPage resPage;
+public class FirstWebPage extends DriverInit {
 
-    public FirstWebPage() {
-        titleOfPage = new BaseElement(By.xpath("//title"), "OpenedWebSite -> Title of page");
-        resPage = new ResultsPage();
+    @Step
+    public String getPageTitle() {
+        log("Getting title of Opened WebPage");
+        waitForPageLoadComplete();
+        String titleText = getDriver().getTitle();
+        log(String.format("TEXT of TITLE is: [%s]", titleText));
+        return titleText;
     }
 
-    public String getTitle() {
-        log.info("Getting title of Opened WebPage");
-        if (titleOfPage.isExist()) {
-            log.info(String.format("TEXT of TITLE is: [%s]", titleOfPage.getTextByAttribute()));
-            return titleOfPage.getTextByAttribute();
-        } else
-            return "";
-    }
-
+    @Step
     public boolean validateResult(String searchingDomain, int pageCount) {
         for (int i = 0; i < pageCount; i++) {
-            log.info(String.format("Results of Page #%s", (i + 1)));
-            if (resPage.getResultsOnPage(searchingDomain)) {
-                log.info(String.format("Domain [%s] is found at Page #%s", searchingDomain, (i + 1)));
+            log(String.format("Results of Page #%s", (i + 1)));
+            if (new ResultsPage().getResultsOnPage(searchingDomain)) {
+                log(String.format("Domain [%s] is found at Page #%s", searchingDomain, (i + 1)));
                 return true;
             } else
-                resPage.navigateForward();
+                new ResultsPage().navigateForward();
         }
         return false;
     }

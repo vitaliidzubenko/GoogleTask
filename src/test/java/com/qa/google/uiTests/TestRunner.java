@@ -6,31 +6,24 @@ import com.qa.google.pages.MainPage;
 import com.qa.google.pages.ResultsPage;
 import io.qameta.allure.Description;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class TestRunner extends BaseTest {
-    private MainPage mainPage;
-    private FirstWebPage firstWebPage;
+import static com.qa.google.base.TestManager.*;
 
-    @BeforeClass(alwaysRun = true)
-    public void pageInit() {
-        mainPage = new MainPage();
-        firstWebPage = new FirstWebPage();
-    }
+public class TestRunner extends BaseTest {
 
     @Test(priority = 1, groups = "Google")
     @Description("Checking text of title at first opened link at result pages")
     public void checkFirstLinkText() {
-        mainPage.searchText(searchForWord).submitSearch();
+        new MainPage().searchText(searchForWord).submitSearch();
         new ResultsPage().openFirstResultUrl();
-        Assert.assertTrue(firstWebPage.getTitle().toLowerCase().contains(searchForWord), String.format("Title of First Opened WebPage must contain [%s]", searchForWord));
+        Assert.assertTrue(new FirstWebPage().getPageTitle().toLowerCase().contains(searchForWord), String.format("Title of First Opened WebPage must contain [%s]", searchForWord));
     }
 
     @Test(priority = 2, groups = "Google")
     @Description("Searching for specific domain at result pages")
     public void searchForDomain() {
-        mainPage.searchText(searchForWord).submitSearch();
-        Assert.assertTrue(firstWebPage.validateResult(searchForDomain, pageCount), String.format("Failed to find domain [%s] at [%s] result pages", searchForDomain, pageCount));
+        new MainPage().searchText(searchForWord).submitSearch();
+        Assert.assertTrue(new FirstWebPage().validateResult(searchForDomain, pageCount), String.format("Failed to find domain [%s] at [%s] result pages", searchForDomain, pageCount));
     }
 }

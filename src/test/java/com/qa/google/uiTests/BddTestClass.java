@@ -22,7 +22,7 @@ public class BddTestClass {
 
     @Then("^Verify that title contains searched \"([^\"]*)\"$")
     public void verifyThatTitleContainsSearched(String word) {
-        Assert.assertTrue(new FirstWebPage().getTitle().toLowerCase().contains(word), "Title of BasePage must contain direct word!");
+        Assert.assertTrue(new FirstWebPage().getPageTitle().toLowerCase().contains(word), "Title of BasePage must contain direct word!");
     }
 
     @Then("^Verify that there is expected \"([^\"]*)\" on \"([^\"]*)\" pages$")

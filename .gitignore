@@ -1,38 +1,11 @@
-# Githash endpoint
 git.properties
-*.DS_Store
 Thumbs.db
 *.sw?
 .#*
 *#
 *~
-.sublime-
-
-#git
-kdiff3
-*.orig
-.BASE.
-.BACKUP.
-.LOCAL.
-.REMOTE.
-
-# Build Artifacts
-.gradle/
-build/
 target/
-dependency-reduced-pom.xml
-nbactions.xml
-
-# IntelliJ IDEA Files
 *.iml
 *.ipr
 *.iws
 *.idea
-
-# Log files
-*.log
-
-builds/
-cache/
-
-.m2

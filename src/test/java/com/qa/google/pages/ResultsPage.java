@@ -1,44 +1,46 @@
 package com.qa.google.pages;
 
-import com.qa.google.base.BaseElement;
-import com.qa.google.base.Page;
+import com.qa.google.base.DriverInit;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ResultsPage extends Page {
-    private BaseElement navigateForwardButton;
-    private BaseElement resultLinks;
+import static com.qa.google.base.Reporter.log;
 
-    public ResultsPage() {
-        navigateForwardButton = new BaseElement(By.xpath("//a[@id = 'pnnext']"), "ResultsPage -> navigateForwardButton");
-        resultLinks = new BaseElement(By.xpath("//div[@id = 'center_col']//cite"), "ResultsPage -> resultLinks");
-    }
+public class ResultsPage extends DriverInit {
+    private By navigateForwardButton = By.xpath("//a[@id = 'pnnext']");
+    private By resultLinks = By.xpath("//div[@id = 'center_col']//cite");
 
+    @Step
     public ResultsPage openFirstResultUrl() {
-        log.info("Clicking at first link in ResultsPage");
-        if (resultLinks.isExist())
-            resultLinks.click();
+        log("Clicking at first link in ResultsPage");
+        driverClick(resultLinks);
         return this;
     }
 
     public ResultsPage navigateForward() {
-        log.info("Navigating to next Page using bottom menu");
-        if (navigateForwardButton.isExist()) {
-            navigateForwardButton.click();
-        } else {
+        log("Navigating to next Page using bottom menu");
+        if (driverCheckIfVisible(navigateForwardButton))
+            driverClick(navigateForwardButton);
+        else {
             scrollToEndOfPage();
-            navigateForwardButton.click();
+            driverClick(navigateForwardButton);
         }
         return this;
     }
 
+    private void scrollToEndOfPage() {
+        log("Scrolling to the End of Page using JS");
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+    }
+
     public boolean getResultsOnPage(String searchingDomain) {
-        log.info("Getting text of all Links on ResultsPage");
-        List<String> allLinksText = resultLinks.getAll().stream().map(WebElement::getText).collect(Collectors.toList());
-        allLinksText.forEach(link -> log.info(String.format("URL: %s", link)));
+        log("Getting text of all Links on ResultsPage");
+        List<String> allLinksText = getDriver().findElements(resultLinks).stream().map(WebElement::getText).collect(Collectors.toList());
+        allLinksText.forEach(link -> log(String.format("URL: %s", link)));
         return allLinksText.stream().anyMatch(s -> s.contains(searchingDomain));
     }
 }

@@ -1,29 +1,26 @@
 package com.qa.google.pages;
 
-import com.qa.google.base.BaseElement;
-import com.qa.google.base.Page;
+import com.qa.google.base.DriverInit;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
-public class MainPage extends Page {
-    private BaseElement textInputField;
-    private BaseElement submitButton;
+import static com.qa.google.base.Reporter.log;
 
-    public MainPage() {
-        textInputField = new BaseElement(By.xpath("//input[@name = 'q']"), "MainBasePage -> textInputField");
-        submitButton = new BaseElement(By.xpath("//input[@name = 'btnK']"), "MainBasePage -> submitButton");
-    }
+public class MainPage extends DriverInit {
+    private By textInputField = By.xpath("//input[@name = 'q']");
+    private By submitButton = By.xpath("//input[@name = 'btnK']");
 
+    @Step
     public MainPage submitSearch() {
-        log.info("Submitting search");
-        if (submitButton.isExist())
-            submitButton.click();
+        log("Submitting search");
+        driverClick(submitButton);
         return this;
     }
 
+    @Step
     public MainPage searchText(String word) {
-        log.info("Searching input field for text");
-        if (textInputField.isExist())
-            textInputField.setText(word);
+        log("Searching input field for text");
+        driverSendKeys(textInputField, word);
         return this;
     }
 }
