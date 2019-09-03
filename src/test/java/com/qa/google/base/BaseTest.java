@@ -41,7 +41,8 @@ public class BaseTest extends DriverInit {
     @AfterClass(alwaysRun = true)
     public void afterTestRun() {
         log("*****Ending Test*****");
-        getDriver().quit();
+        if (getDriver() != null)
+            getDriver().quit();
     }
 
     @Attachment(value = "BasePage screenshot", type = "image/png")

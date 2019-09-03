@@ -9,6 +9,6 @@ public class Reporter {
 
     @Step("{0}")
     public static void log(String log) {
-        logger.info("[##### Reporter #####]" + log);
+        logger.info(String.format("[%s]", log));
     }
 }

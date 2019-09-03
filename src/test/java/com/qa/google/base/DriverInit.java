@@ -14,7 +14,7 @@ import static com.qa.google.base.TestManager.browserName;
 public class DriverInit {
     private static WebDriver driver;
     private static WebDriverWait wait;
-    public JavascriptExecutor js = (JavascriptExecutor) getDriver();
+    protected JavascriptExecutor js = (JavascriptExecutor) getDriver();
 
     private void driverSetup() {
         if (browserName == null)
@@ -35,14 +35,14 @@ public class DriverInit {
         wait = new WebDriverWait(driver, 10);
     }
 
-    public WebDriver getDriver() {
+    protected WebDriver getDriver() {
         if (driver == null) {
             driverSetup();
         }
         return driver;
     }
 
-    public WebDriverWait getWait() {
+    private WebDriverWait getWait() {
         if (wait == null)
             driverWaitSetup();
         return wait;
