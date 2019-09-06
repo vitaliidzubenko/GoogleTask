@@ -1,12 +1,15 @@
 package com.qa.google.uiTests;
 
 import com.qa.google.base.BaseTest;
+import com.qa.google.init.WebDriverListener;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.Before;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 
+@Listeners(WebDriverListener.class)
 @CucumberOptions(
         features = {"src/test/resources/googleTest.feature"},
         glue = {"com.qa.google"},
@@ -20,12 +23,12 @@ public class BddRunner extends AbstractTestNGCucumberTests {
 
     @BeforeClass(alwaysRun = true)
     public void beforeTest() {
-        baseTest.beforeTestRun();
+//        baseTest.beforeTestRun();
     }
 
     @Before
     public void beforeScenario() {
-        baseTest.navigateToBaseUrl();
+//        baseTest.navigateToBaseUrl();
     }
 
     @AfterClass

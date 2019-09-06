@@ -1,18 +1,21 @@
 package com.qa.google.uiTests;
 
 import com.qa.google.base.BaseTest;
+import com.qa.google.init.WebDriverListener;
 import com.qa.google.pages.FirstWebPage;
 import com.qa.google.pages.MainPage;
 import com.qa.google.pages.ResultsPage;
 import io.qameta.allure.Description;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static com.qa.google.base.TestManager.*;
 
+@Listeners(WebDriverListener.class)
 public class TestRunner extends BaseTest {
 
-    @Test(priority = 1, groups = "Google")
+    @Test
     @Description("Checking text of title at first opened link at result pages")
     public void checkFirstLinkText() {
         new MainPage().searchText(searchForWord).submitSearch();
@@ -20,7 +23,7 @@ public class TestRunner extends BaseTest {
         Assert.assertTrue(new FirstWebPage().getPageTitle().toLowerCase().contains(searchForWord), String.format("Title of First Opened WebPage must contain [%s]", searchForWord));
     }
 
-    @Test(priority = 2, groups = "Google")
+    @Test
     @Description("Searching for specific domain at result pages")
     public void searchForDomain() {
         new MainPage().searchText(searchForWord).submitSearch();

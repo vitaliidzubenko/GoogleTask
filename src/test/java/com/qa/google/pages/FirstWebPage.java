@@ -1,10 +1,12 @@
 package com.qa.google.pages;
 
-import com.qa.google.base.DriverInit;
+import com.qa.google.base.BasePage;
 import io.qameta.allure.Step;
-import static com.qa.google.base.Reporter.log;
 
-public class FirstWebPage extends DriverInit {
+import static com.qa.google.base.Reporter.log;
+import static com.qa.google.init.DriverManager.getDriver;
+
+public class FirstWebPage extends BasePage {
 
     @Step
     public String getPageTitle() {

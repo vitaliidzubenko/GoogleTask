@@ -1,6 +1,6 @@
 package com.qa.google.pages;
 
-import com.qa.google.base.DriverInit;
+import com.qa.google.base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -9,8 +9,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.qa.google.base.Reporter.log;
+import static com.qa.google.init.DriverManager.getDriver;
 
-public class ResultsPage extends DriverInit {
+public class ResultsPage extends BasePage {
     private By navigateForwardButton = By.xpath("//a[@id = 'pnnext']");
     private By resultLinks = By.xpath("//div[@id = 'center_col']//cite");
 
