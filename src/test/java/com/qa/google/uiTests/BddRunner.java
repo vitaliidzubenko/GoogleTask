@@ -6,7 +6,6 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.java.Before;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 
 @Listeners(WebDriverListener.class)
@@ -21,14 +20,9 @@ import org.testng.annotations.Listeners;
 public class BddRunner extends AbstractTestNGCucumberTests {
     private BaseTest baseTest = new BaseTest();
 
-    @BeforeClass(alwaysRun = true)
-    public void beforeTest() {
-//        baseTest.beforeTestRun();
-    }
-
     @Before
     public void beforeScenario() {
-//        baseTest.navigateToBaseUrl();
+        baseTest.navigateToBaseUrl();
     }
 
     @AfterClass

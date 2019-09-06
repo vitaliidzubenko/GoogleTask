@@ -19,19 +19,10 @@ import static com.qa.google.init.DriverManager.getDriver;
 
 public class BaseTest extends BasePage {
 
-//    @BeforeClass(alwaysRun = true)
-//    public void beforeTestRun() {
-//        log("*****Starting Test*****");
-//        getDriver().manage().deleteAllCookies();
-//        getDriver().manage().window().setSize(new Dimension(1024, 768));
-//        getDriver().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-//    }
-
-//    @BeforeMethod(alwaysRun = true)
-//    public void navigateToBaseUrl() {
-//        log("Navigating to BaseUrl");
-//        getDriver().navigate().to(baseUrl);
-//    }
+    public void navigateToBaseUrl() {
+        log("Navigating to BaseUrl");
+        getDriver().navigate().to(baseUrl);
+    }
 
     @AfterMethod(alwaysRun = true)
     public void finish(ITestResult result) {

@@ -9,7 +9,6 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <browser.name>chrome</browser.name>
         <base.url>https://www.google.com</base.url>
         <search.word>automation</search.word>
         <page.count>5</page.count>
@@ -29,7 +28,6 @@
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <systemPropertyVariables>
-                        <browser.name>${browser.name}</browser.name>
                         <base.url>${base.url}</base.url>
                         <search.word>${search.word}</search.word>
                         <page.count>${page.count}</page.count>
