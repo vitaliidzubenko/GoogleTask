@@ -21,7 +21,7 @@ public class FirstWebPage extends BasePage {
     public boolean validateResult(String searchingDomain, int pageCount) {
         for (int i = 0; i < pageCount; i++) {
             log(String.format("Results of Page #%s", (i + 1)));
-            if (new ResultsPage().getResultsOnPage(searchingDomain)) {
+            if (getResultsOnPage(searchingDomain)) {
                 log(String.format("Domain [%s] is found at Page #%s", searchingDomain, (i + 1)));
                 return true;
             } else
