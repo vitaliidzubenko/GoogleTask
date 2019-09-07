@@ -19,7 +19,7 @@ From terminal:
 mvn -Dtest=BddRunner clean test verify
 mvn -Dtest=TestRunner clean test
 ```
-From properties file:
+For parallel test execution run:
 ```bash
 testng.xml
 ```

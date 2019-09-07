@@ -1,37 +1,33 @@
 package com.qa.google.init;
 
-import org.openqa.selenium.Dimension;
+import com.qa.google.base.BaseTest;
+import io.qameta.allure.Attachment;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
 
-import java.util.concurrent.TimeUnit;
-
-import static com.qa.google.base.TestManager.baseUrl;
 import static com.qa.google.init.DriverManager.getDriver;
 
 public class WebDriverListener implements IInvokedMethodListener {
     @Override
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
-        if (method.isTestMethod()) {
-            String browserName = method.getTestMethod().getXmlTest().getLocalParameters().get("browserName");
-            WebDriver driver = DriverFactory.createInstance(browserName);
-            DriverManager.setWebDriver(driver);
-            DriverManager.setWait(new WebDriverWait(driver, 10));
-            getDriver().manage().deleteAllCookies();
-            getDriver().manage().window().setSize(new Dimension(1024, 768));
-            getDriver().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-            getDriver().navigate().to(baseUrl);
-        }
+        if (method.isTestMethod())
+            new BaseTest().beforeTestRun();
     }
 
     @Override
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
-        if (method.isTestMethod()) {
-            if (getDriver() != null)
-                getDriver().quit();
-        }
+        if (method.isTestMethod() && !testResult.isSuccess() && getDriver() != null)
+            saveScreenshot(getDriver());
+        if (getDriver() != null)
+            getDriver().close();
+    }
+
+    @Attachment(value = "BasePage screenshot", type = "image/png")
+    private byte[] saveScreenshot(WebDriver driver) {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 }

@@ -1,14 +1,16 @@
 package com.qa.google.uiTests;
 
 import com.qa.google.base.BaseTest;
-import com.qa.google.init.WebDriverListener;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.Before;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.BeforeClass;
 
-@Listeners(WebDriverListener.class)
+import static com.qa.google.base.Reporter.log;
+import static com.qa.google.init.DriverManager.getDriver;
+import static com.qa.google.init.TestParams.baseUrl;
+
 @CucumberOptions(
         features = {"src/test/resources/googleTest.feature"},
         glue = {"com.qa.google"},
@@ -18,15 +20,23 @@ import org.testng.annotations.Listeners;
                 "json:target/cucumber-reports/CucumberTestReport.json",
                 "rerun:target/cucumber-reports/rerun.txt"})
 public class BddRunner extends AbstractTestNGCucumberTests {
-    private BaseTest baseTest = new BaseTest();
+
+    @BeforeClass(alwaysRun = true)
+    public void onTestStart() {
+        new BaseTest().beforeTestRun();
+    }
 
     @Before
     public void beforeScenario() {
-        baseTest.navigateToBaseUrl();
+        log("*****Starting Test*****");
+        getDriver().navigate().to(baseUrl);
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void afterScenario() {
-        baseTest.afterTestRun();
+        log("*****Ending Test*****");
+        if (getDriver() != null)
+            getDriver().quit();
     }
+
 }

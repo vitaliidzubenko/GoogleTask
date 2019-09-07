@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Google" parallel="methods" thread-count="4" configfailurepolicy="continue">
-    <listeners>
-        <listener class-name="com.qa.google.init.WebDriverListener"/>
-    </listeners>
+<suite name="Google" parallel="methods" thread-count="4" configfailurepolicy="continue" data-provider-thread-count="4">
     <test name="Google UI Allure">
-        <parameter name="browserName" value="chrome"/>
         <classes>
             <class name="com.qa.google.uiTests.TestRunner"/>
         </classes>
     </test>
     <test name="Google UI BDD">
-        <parameter name="browserName" value="chrome"/>
         <classes>
             <class name="com.qa.google.uiTests.BddRunner"/>
         </classes>
