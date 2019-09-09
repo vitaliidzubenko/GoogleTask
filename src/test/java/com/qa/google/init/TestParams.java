@@ -3,6 +3,7 @@ package com.qa.google.init;
 import org.testng.annotations.DataProvider;
 
 public class TestParams {
+
     public static String baseUrl;
     public static String browserName;
 

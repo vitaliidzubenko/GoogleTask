@@ -12,6 +12,7 @@ import org.testng.ITestResult;
 import static com.qa.google.init.DriverManager.getDriver;
 
 public class WebDriverListener implements IInvokedMethodListener {
+
     @Override
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
         if (method.isTestMethod())

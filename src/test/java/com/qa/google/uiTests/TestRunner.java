@@ -25,6 +25,6 @@ public class TestRunner {
     @Description("Searching for specific domain at result pages")
     public void searchForDomain(String searchForWord, String searchForDomain, int pageCount) {
         new MainPage().searchText(searchForWord).submitSearch();
-        Assert.assertTrue(new FirstWebPage().validateResult(searchForDomain, pageCount), String.format("Failed to find domain [%s] at [%s] result pages", searchForDomain, pageCount));
+        Assert.assertTrue(new ResultsPage().validateResult(searchForDomain, pageCount), String.format("Failed to find domain [%s] at [%s] result pages", searchForDomain, pageCount));
     }
 }

@@ -7,14 +7,15 @@ import org.openqa.selenium.By;
 import static com.qa.google.base.Reporter.log;
 
 public class MainPage extends BasePage {
+
     private By textInputField = By.xpath("//input[@name = 'q']");
     private By submitButton = By.xpath("//input[@name = 'btnK']");
 
     @Step
-    public MainPage submitSearch() {
+    public ResultsPage submitSearch() {
         log("Submitting search");
         driverClick(submitButton);
-        return this;
+        return new ResultsPage();
     }
 
     @Step

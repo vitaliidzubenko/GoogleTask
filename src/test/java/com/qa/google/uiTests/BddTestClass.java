@@ -30,6 +30,6 @@ public class BddTestClass {
 
     @Then("^Verify that there is expected \"([^\"]*)\" on \"([^\"]*)\" pages$")
     public void verifyThatThereIsExpectedOnPages(String domain, int number) {
-        Assert.assertTrue(new FirstWebPage().validateResult(domain, number), "Searching of Link must be passed!");
+        Assert.assertTrue(new ResultsPage().validateResult(domain, number), "Searching of Link must be passed!");
     }
 }
