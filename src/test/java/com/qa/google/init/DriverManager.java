@@ -5,8 +5,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DriverManager {
 
-    private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<WebDriver>();
-    private static ThreadLocal<WebDriverWait> webDriverWait = new ThreadLocal<WebDriverWait>();
+    private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
+    private static ThreadLocal<WebDriverWait> webDriverWait = new ThreadLocal<>();
 
     public static WebDriver getDriver() {
         return webDriver.get();

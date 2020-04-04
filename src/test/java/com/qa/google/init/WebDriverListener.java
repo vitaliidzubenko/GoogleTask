@@ -15,16 +15,17 @@ public class WebDriverListener implements IInvokedMethodListener {
 
     @Override
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
-        if (method.isTestMethod())
-            new BaseTest().beforeTestRun();
+        if (method.isTestMethod()) {
+            new BaseTest().driverSetup();
+            new BaseTest().navigateToBasePage();
+        }
     }
 
     @Override
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
         if (method.isTestMethod() && !testResult.isSuccess() && getDriver() != null)
             saveScreenshot(getDriver());
-        if (getDriver() != null)
-            getDriver().close();
+        new BaseTest().driverFinish();
     }
 
     @Attachment(value = "BasePage screenshot", type = "image/png")

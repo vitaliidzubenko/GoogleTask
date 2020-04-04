@@ -1,4 +1,4 @@
-package com.qa.google.uiTests;
+package com.qa.google.testRunners;
 
 import com.qa.google.init.TestParams;
 import com.qa.google.init.WebDriverListener;
@@ -18,13 +18,15 @@ public class TestRunner {
     public void checkFirstLinkText(String searchForWord) {
         new MainPage().searchText(searchForWord).submitSearch();
         new ResultsPage().openFirstResultUrl();
-        Assert.assertTrue(new FirstWebPage().getPageTitle().toLowerCase().contains(searchForWord), String.format("Title of First Opened WebPage must contain [%s]", searchForWord));
+        Assert.assertTrue(new FirstWebPage().getPageTitle().toLowerCase().contains(searchForWord),
+                String.format("Title of First Opened WebPage must contain [%s]", searchForWord));
     }
 
     @Test(dataProvider = "SearchForDomain", dataProviderClass = TestParams.class)
     @Description("Searching for specific domain at result pages")
     public void searchForDomain(String searchForWord, String searchForDomain, int pageCount) {
         new MainPage().searchText(searchForWord).submitSearch();
-        Assert.assertTrue(new ResultsPage().validateResult(searchForDomain, pageCount), String.format("Failed to find domain [%s] at [%s] result pages", searchForDomain, pageCount));
+        Assert.assertTrue(new ResultsPage().validateResult(searchForDomain, pageCount),
+                String.format("Failed to find domain [%s] at [%s] result pages", searchForDomain, pageCount));
     }
 }

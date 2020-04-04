@@ -1,12 +1,12 @@
-package com.qa.google.uiTests;
+package com.qa.google.testRunners;
 
 import com.qa.google.init.WebDriverListener;
 import com.qa.google.pages.FirstWebPage;
 import com.qa.google.pages.MainPage;
 import com.qa.google.pages.ResultsPage;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 

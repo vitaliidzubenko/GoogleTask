@@ -3,12 +3,7 @@
 <suite name="Google" parallel="methods" thread-count="4" configfailurepolicy="continue" data-provider-thread-count="4">
     <test name="Google UI Allure">
         <classes>
-            <class name="com.qa.google.uiTests.TestRunner"/>
-        </classes>
-    </test>
-    <test name="Google UI BDD">
-        <classes>
-            <class name="com.qa.google.uiTests.BddRunner"/>
+            <class name="com.qa.google.testRunners.TestRunner"/>
         </classes>
     </test>
 </suite>

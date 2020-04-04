@@ -10,18 +10,17 @@ Clone repository to your local storage
 git clone https://github.com/vitaliidzubenko/GoogleTask.git
 ```
 ## Running Tests
-From Test.class
+To run tests on single-thread mode use Test.class
 ```bash
 TestRunner.class or BddRunner.class
 ```
-From terminal:
+To run tests in non-BDD style in multi-thread mode:
 ```bash
-mvn -Dtest=BddRunner clean test verify
-mvn -Dtest=TestRunner clean test
+mvn clean test
 ```
-For parallel test execution run:
+To run tests in BDD style in multi-thread mode:
 ```bash
-testng.xml
+mvn -Dtest=BddRunner clean integration-test verify
 ```
 ## Reporting
 To generete Allure Report run command in terminal:
