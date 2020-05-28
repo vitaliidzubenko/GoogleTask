@@ -12,22 +12,25 @@ public class BasePage {
 
     private JavascriptExecutor js = (JavascriptExecutor) getDriver();
 
-    protected void driverClick(By Locator) {
-        getWebDriverWait().until(ExpectedConditions.elementToBeClickable(Locator)).click();
+    protected void driverClick(By locator) {
+        getWebDriverWait().until(a -> ExpectedConditions.elementToBeClickable(locator));
+        getDriver().findElement(locator).click();
     }
 
     protected void driverSendKeys(By locator, String text) {
-        getWebDriverWait().until(ExpectedConditions.visibilityOfElementLocated(locator)).sendKeys(text);
+        getWebDriverWait().until(a -> ExpectedConditions.visibilityOfElementLocated(locator));
+        getDriver().findElement(locator).sendKeys(text);
     }
 
     protected boolean driverCheckIfVisible(By locator) {
-        return getWebDriverWait().until(ExpectedConditions.visibilityOfElementLocated(locator)).isDisplayed();
+        getWebDriverWait().until(a -> ExpectedConditions.visibilityOfElementLocated(locator));
+        return getDriver().findElement(locator).isDisplayed();
     }
 
     protected void waitForPageLoadComplete() {
         getWebDriverWait().until(getDriver -> String
-                .valueOf(((JavascriptExecutor) getDriver()).executeScript("return document.readyState"))
-                .equals("complete"));
+            .valueOf(((JavascriptExecutor) getDriver()).executeScript("return document.readyState"))
+            .equals("complete"));
     }
 
     protected void scrollToEndOfPage() {

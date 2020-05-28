@@ -5,13 +5,13 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
-        features = {"src/test/resources/googleTest.feature"},
-        glue = {"com.qa.google"},
-        tags = {"@google"},
-        plugin = {"pretty",
-                "html:target/cucumber-reports/cucumber-pretty",
-                "json:target/cucumber-reports/CucumberTestReport.json",
-                "rerun:target/cucumber-reports/rerun.txt"})
+    features = {"src/test/resources/googleTest.feature"},
+    glue = {"com.qa.google"},
+    tags = {"@google"},
+    plugin = {"pretty",
+        "html:target/cucumber-reports/cucumber-pretty",
+        "json:target/cucumber-reports/CucumberTestReport.json",
+        "rerun:target/cucumber-reports/rerun.txt"})
 public class BddRunner extends AbstractTestNGCucumberTests {
 
     @Override
