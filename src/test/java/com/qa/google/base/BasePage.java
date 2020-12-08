@@ -10,7 +10,7 @@ import static com.qa.google.init.DriverManager.getWebDriverWait;
 
 public class BasePage {
 
-    private JavascriptExecutor js = (JavascriptExecutor) getDriver();
+    private final JavascriptExecutor js = (JavascriptExecutor) getDriver();
 
     protected void driverClick(By locator) {
         getWebDriverWait().until(a -> ExpectedConditions.elementToBeClickable(locator));
